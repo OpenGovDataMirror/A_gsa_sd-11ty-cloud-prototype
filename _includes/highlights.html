@@ -1,0 +1,28 @@
+{% comment %}
+Use this section to highlight key elements of your site. Some
+sites will only have two while others may have six to eight.
+{% endcomment %}
+
+<section class="usa-graphic-list usa-section usa-section--dark">
+  <div class="grid-container">
+    <h2 class="font-heading-xl margin-top-0 tablet:margin-bottom-4 text-base-lightest">Available services</h2>
+    <div class="usa-graphic-list__row grid-row grid-gap">
+      {% for service in collections.services %}
+        <div class="usa-media-block desktop:grid-col-6 margin-top-4">
+          
+          <a href="{{ service.data.page.url | url }}">
+            <div class="usa-media-block__img circle-6 bg-accent-cool display-flex flex-row flex-align-center flex-justify-center text-white font-mono-xl">
+              {% uswds_icon service.data.icon %}
+              </div>
+          </a>
+          <div class="usa-media-block__body">
+            <h3 class="usa-graphic-list__heading"><a href="{{ service.data.page.url | url }}">{{ service.data.title }}</a></h3>
+            <p>
+              {{ service.data.brief }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

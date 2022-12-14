@@ -1,0 +1,64 @@
+## Comment out when doing local development
+backend:
+  name: github
+  repo: GSA/sd-11ty-cloud-prototype
+  base_url: https://federalist-c4474fb7-fe79-4353-aee7-b145439a83d4.app.cloud.gov/site/gsa/sd-11ty-cloud-prototype/
+  auth_endpoint: external/auth/github
+  preview_context: federalist/build
+  branch: main
+  use_graphql: true
+
+##
+## Uncomment when doing local development on Netlify CMS
+## Run `npx netlify-cms-proxy-server` to start working locally
+## In another terminal, start the app with `npm start`
+## See https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
+##
+
+# backend:
+#   name: git-gateway
+# local_backend: true
+
+##
+##
+
+media_folder: _img/uploads
+public_folder: uploads
+publish_mode: editorial_workflow
+logo_url: https://federalist.18f.gov/assets/images/federalist-logo.png
+
+collections:
+  - label: Posts
+    name: posts
+    folder: posts/
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: 'Layout', name: 'layout', widget: 'hidden', default: 'layouts/post'}
+      - {label: 'Tags', name: 'tags', widget: 'hidden', default: ['posts']}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Author", name: "author", widget: "string"}
+      - {
+          label: "Publish Date",
+          name: "date",
+          widget: "datetime",
+          format: 'YYYY-MM-DD',
+          dateFormat: 'YYYY-MM-DD',
+          timeFormat: false
+        }
+      - {
+        label: "Image",
+        name: "image",
+        widget: "image",
+        allow_multiple: false,
+        required: false
+        }
+      - {
+        label: "Image Alt Text",
+        name: "image_alt_text",
+        widget: "string",
+        required: false
+        }
+      - {label: "Body", name: "body", widget: "markdown"}
